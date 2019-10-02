@@ -1,6 +1,6 @@
 import { store } from '../'
 
-function thunkDispatch(action) {
+export function thunkDispatch(action) {
 
     store.dispatch(async (dispatch) => {
 
@@ -10,12 +10,14 @@ function thunkDispatch(action) {
 
 }
 
+//Code async
 export const getAsyncCep = (type) => {
 
     fetch('https://viacep.com.br/ws/01001000/json')
         .then((res) => res.json())
         .then(({ cep }) => {
 
+            //Dispatch
             return thunkDispatch({ type, payload: cep })
 
         }).catch((err) => console.log('erro'))
